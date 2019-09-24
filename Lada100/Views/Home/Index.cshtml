@@ -1,0 +1,82 @@
+﻿@using Lada100.Models
+@model List<Spisok>
+
+
+
+<div class="row-center form-group">
+    <a class="btn btn-info" asp-action="New">+ Добавить</a>
+</div>
+<style>
+    .a {
+        font-size: 10pt;
+    }
+
+    .b {
+        font-weight: 500;
+    }
+
+    .d {
+        font-size: 10pt;
+        font-variant: small-caps;
+    }
+
+    .p {
+        font-size: 12pt;
+        font-weight: 700;
+        font-variant: inherit;
+    }
+
+    .t {
+    }
+</style>
+
+<form asp-action="Index" method="POST">
+    <div class="row-center input-group">
+        <input type="text" name="search" id="search" class="form-control center" />
+
+        <div class="input-group-btn">
+            <input type="submit" value="ПОИСК" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr class="align-text-bottom">
+            <th>Id</th>
+            <th>ДАТА</th>
+            <th>РАБОТА</th>
+            <th>ЦЕНА</th>
+            <th>ФОТО</th>
+            <th colspan="3">Дествия</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var spisok in Model)
+        {
+            <tr class="a b">
+
+                <td class="d">@spisok.data1</td>
+                <td class="t">@spisok.WorkTotal</td>
+                <td class="p">@spisok.PriceTotal</td>
+                <td><div class="col-sm-2"><img class="img-thumbnail" src="@spisok.Img1" alt="@spisok.Img1" /></div></td>               
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="edit" asp-route-Id="@spisok.Id"> Z </a>
+
+                </td>
+                <td>
+
+                    <a class="btn btn-danger btn-sm"
+                       asp-action="delete"
+                       asp-route-Id="@spisok.Id"
+                       onclick="return confirm('Удалить этот пункт ?');">
+                        X
+                    </a>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>

@@ -1,0 +1,179 @@
+﻿@model Lada100.Models.Spisok
+
+<style>
+    hr {
+        border: none; /* Убираем границу */
+        background-color: black; /* Цвет линии */
+        color: black; /* Цвет линии для IE6-7 */
+        height: 2px; /* Толщина линии */
+    }
+
+    .a {
+        /*font-weight: bold|bolder|lighter|normal|100|200|300|400|500|600|700|800|900 asp-controller="Spisok"*/
+        font-weight: 100;
+    }
+    .b{
+        font-weight: 500;
+    }
+</style>
+
+<script src="~/js/jquery-3.4.1.min.js"></script>
+
+<form asp-action="New" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <input asp-for="Id" type="hidden" />
+    <input name="IsEditMode" id="IsEditMode" value="@ViewBag.IsEditMode" type="hidden" />
+
+    @*<div class="row">
+
+        <div class="col-3 form-group">
+            <label asp-for="data1">Дата</label>
+            <input asp-for="data1" class="form-control" />
+        </div>
+
+        <div class="col-4 form-group">
+            <label asp-for="Img1">Картинка</label>
+            <input asp-for="Img1" class="col form-control" />
+        </div>
+
+        <div class="col-5 form-group">
+            <label asp-for="Img1">Загрузить</label>
+            <div class="custom-file">
+                <input type="file" id="file" name="file" class="form-control custom-file-input" />
+                <label class="custom-file-label"></label>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="row">
+
+        <div class="col-3 form-group">
+            <label asp-for="data1">Дата</label>
+            <input asp-for="data1" class="form-control" />
+        </div>
+
+        <div class="col form-group">
+            <label asp-for="WorkTotal">Работа общая</label>
+            <input asp-for="WorkTotal" class="form-control" />
+        </div>
+
+        <div class="col-3 form-group">
+            <label asp-for="PriceTotal">Цена общая</label>
+            <input asp-for="PriceTotal" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col form-group">
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+        </div>
+
+        <div class="col-4 form-group">
+            @*<label asp-for="Img1">Картинка</label>*@
+            <input asp-for="Img1" class="col form-control" />
+        </div>
+
+        <div class="col-5 form-group">
+            @*<label asp-for="Img1">Загрузить</label>*@
+            <div class="custom-file">
+                <input type="file" id="file" name="file" class="form-control custom-file-input" />
+                <label class="custom-file-label">Выбрать фото</label>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    
+
+    <div class="col-center"><img class="img-thumbnail" src="/@Model.Img1" alt="@Model.Img1" /></div>
+
+    <hr />
+
+    <div class="a row">
+
+        <div class="col form-group">
+            <label asp-for="Work">Работа</label>
+            <input asp-for="Work" class="form-control" />
+        </div>
+
+        <div class="col-3 form-group">
+            <label asp-for="WorkPrice">Цена</label>
+            <input asp-for="WorkPrice" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="a row">
+
+        <div class="col form-group">
+            <label asp-for="Spare">Запчасти</label>
+            <input asp-for="Spare" class="form-control" />
+        </div>
+
+        <div class="col-3 form-group">
+            <label asp-for="SparePrice">Цена</label>
+            <input asp-for="SparePrice" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="a row">
+
+        <div class="col form-group">
+            @*<label asp-for="Spare1">Запчасти 2</label>*@
+            <input asp-for="Spare1" class="form-control" />
+        </div>
+
+        <div class="col-3 form-group">
+            @*<label asp-for="SparePrice1">Цена</label>*@
+            <input asp-for="SparePrice1" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="a row">
+
+        <div class="col form-group">
+            @*<label asp-for="Spare2"></label>*@
+            <input asp-for="Spare2" class="form-control" />
+        </div>
+
+        <div class="col-3 form-group">
+            @*<label asp-for="SparePrice2"></label>*@
+            <input asp-for="SparePrice2" class="form-control" />
+        </div>
+
+    </div>
+
+    @*<div class="form-group">
+            <label>Upload Image</label>
+            <input type="file" id="file" name="file" class="form-control" />
+        </div>*@
+
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+    </div>
+</form>
+
+@*это скрипт для того что бы в загрузке картинки было имя*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next(".custom-file-label").html(fileName);
+        })
+    });
+
+</script>
+
+
+
+@*<div class="col-3 form-group">
+        <label> </label>
+        <h1></h1>
+        <a class="btn btn-info" asp-action="Details"  asp-route-id="Id"  asp-controller="Spisok">Детали</a>
+        <input type="submit" value="Детали" class="col btn btn-primary" asp-action="Details" />
+    </div>*@
